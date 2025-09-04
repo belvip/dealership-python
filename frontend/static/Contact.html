@@ -1,0 +1,137 @@
+<html>
+<head>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
+  <style>
+    .contact-hero {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/static/img_conatact.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 100px 0;
+      text-align: center;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-content {
+      max-width: 600px;
+    }
+    .contact-section {
+      padding: 60px 0;
+      background: #f8f9fa;
+    }
+    .contact-card {
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      margin: 20px 0;
+      text-align: center;
+    }
+    .contact-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 20px;
+      background: #667eea;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color:darkturquoise; height: 1in;">
+    <div class="container-fluid">
+      <h2 style="padding-right: 5%;">Dealerships</h2>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" style="font-size: larger;" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="font-size: larger;" href="/about">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" style="font-size: larger;" href="/contact">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="contact-hero">
+    <div class="hero-content">
+      <h1 style="font-size: 3.5rem; margin-bottom: 20px;">Contact Us</h1>
+      <p style="font-size: 1.3rem;">Get in touch with Best Cars - We're here to help you find your perfect vehicle</p>
+    </div>
+  </div>
+
+  <div class="contact-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="contact-card">
+            <div class="contact-icon">📍</div>
+            <h4>Visit Us</h4>
+            <p>123 Auto Plaza Drive<br>Detroit, MI 48201</p>
+          </div>
+        </div>
+        
+        <div class="col-md-3">
+          <div class="contact-card">
+            <div class="contact-icon">📞</div>
+            <h4>Call Us</h4>
+            <p>(555) 123-CARS<br>(555) 123-2277</p>
+          </div>
+        </div>
+        
+        <div class="col-md-3">
+          <div class="contact-card">
+            <div class="contact-icon">✉️</div>
+            <h4>Email Us</h4>
+            <p>info@bestcars.com<br>sales@bestcars.com</p>
+          </div>
+        </div>
+        
+        <div class="col-md-3">
+          <div class="contact-card">
+            <div class="contact-icon">🕒</div>
+            <h4>Hours</h4>
+            <p>Mon-Fri: 9AM-8PM<br>Sat-Sun: 9AM-6PM</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row" style="margin-top: 40px;">
+        <div class="col-md-12">
+          <div class="contact-card">
+            <h3>Department Contacts</h3>
+            <div class="row">
+              <div class="col-md-3">
+                <strong>Sales:</strong> (555) 123-7253
+              </div>
+              <div class="col-md-3">
+                <strong>Service:</strong> (555) 123-7378
+              </div>
+              <div class="col-md-3">
+                <strong>Finance:</strong> (555) 123-3462
+              </div>
+              <div class="col-md-3">
+                <strong>Parts:</strong> (555) 123-7278
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
