@@ -2,6 +2,60 @@
 <head>
   <link rel="stylesheet" href="/static/style.css">
   <link rel="stylesheet" href="/static/bootstrap.min.css">
+  <style>
+    .register-container {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 50px 0;
+    }
+    .register-card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .register-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+    .register-body {
+      padding: 40px;
+    }
+    .form-control {
+      border-radius: 10px;
+      border: 2px solid #e9ecef;
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+    }
+    .form-control:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    }
+    .btn-register {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      border-radius: 10px;
+      padding: 12px 30px;
+      font-weight: 600;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .btn-register:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+    .login-link {
+      text-align: center;
+      color: #667eea;
+      text-decoration: none;
+    }
+    .login-link:hover {
+      color: #764ba2;
+    }
+  </style>
   <script>
     const logout = async (e) => {
       //Include the code for logout here.
@@ -61,38 +115,45 @@
     </div>
   </nav>
 
-  <div class="container" style="margin-top: 50px;">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-header">
-            <h3>Register</h3>
-          </div>
-          <div class="card-body">
-            <form onsubmit="register(event)">
-              <div class="mb-3">
-                <label for="firstName" class="form-label">First Name</label>
-                <input type="text" class="form-control" id="firstName" required>
-              </div>
-              <div class="mb-3">
-                <label for="lastName" class="form-label">Last Name</label>
-                <input type="text" class="form-control" id="lastName" required>
-              </div>
-              <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" required>
-              </div>
-              <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" required>
-              </div>
-              <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" required>
-              </div>
-              <button type="submit" class="btn btn-primary">Register</button>
-              <a href="/login" class="btn btn-link">Already have an account? Login</a>
-            </form>
+  <div class="register-container">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          <div class="register-card">
+            <div class="register-header">
+              <h2 style="margin: 0; font-weight: 300;">Create Your Account</h2>
+              <p style="margin: 10px 0 0 0; opacity: 0.9;">Join Best Cars Dealership Today</p>
+            </div>
+            <div class="register-body">
+              <form onsubmit="register(event)">
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="firstName" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="lastName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" placeholder="Enter your last name" required>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="username" class="form-label">Username</label>
+                  <input type="text" class="form-control" id="username" placeholder="Choose a username" required>
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email Address</label>
+                  <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="password" placeholder="Create a strong password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-register">Create Account</button>
+                <div class="text-center">
+                  <a href="/login" class="login-link">Already have an account? Sign in here</a>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
