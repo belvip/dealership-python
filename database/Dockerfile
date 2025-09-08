@@ -1,4 +1,4 @@
-FROM node:18.12.1-bullseye-slim
+FROM belvinar/ibm-python
 
 RUN npm install -g npm@9.1.3
 
