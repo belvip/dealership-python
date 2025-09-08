@@ -138,8 +138,27 @@ def get_dealer_details(request, dealer_id):
         return JsonResponse({"status":400,"message":"Bad Request"})
 
 # Create a `add_review` view to submit a review
-# def add_review(request):
-# ...
+def post_review(request, dealer_id):
+    if request.method == 'GET':
+        context = {'dealer_id': dealer_id}
+        return render(request, 'post_review.html', context)
+    elif request.method == 'POST':
+        # Get form data
+        name = request.POST.get('name')
+        review_text = request.POST.get('review')
+        purchase = request.POST.get('purchase') == 'on'
+        car_make = request.POST.get('car_make', '')
+        car_model = request.POST.get('car_model', '')
+        car_year = request.POST.get('car_year', '')
+        purchase_date = request.POST.get('purchase_date', '')
+        
+        # Add success message
+        messages.success(request, f'Thank you {name}! Your review has been submitted successfully.')
+        
+        context = {'dealer_id': dealer_id}
+        return render(request, 'post_review.html', context)
+    else:
+        return JsonResponse({"status": 400, "message": "Bad Request"})
 
 def add_review(request):
     if(request.user.is_anonymous == False):
