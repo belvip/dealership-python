@@ -20,16 +20,12 @@
         '<a class="homepage_links"  href="/register">Register</a>'
       }
     }
-    
-    function filterByState() {
-      const selectedState = document.getElementById('stateFilter').value;
-      if (selectedState === 'All') {
-        window.location.href = '/djangoapp/get_dealers';
-      } else {
-        window.location.href = '/djangoapp/get_dealers/' + selectedState;
-      }
-    }
   </script>
+  <style>
+    .sentiment-positive { color: #28a745; font-weight: bold; }
+    .sentiment-negative { color: #dc3545; font-weight: bold; }
+    .sentiment-neutral { color: #6c757d; font-weight: bold; }
+  </style>
 </head>
 <body onload="checkSession()">
   <nav class="navbar navbar-expand-lg navbar-light" style="background-color:darkturquoise; height: 1in;">
@@ -59,38 +55,42 @@
   </nav>
 
   <div class="container" style="margin-top: 50px;">
-    <h1>Car Dealerships</h1>
+    <h1>Dealer Reviews</h1>
+    <p class="lead">Reviews for Dealer ID: {{ dealer_id }}</p>
     
-    <div class="mb-4">
-      <label for="stateFilter" class="form-label">Filter by State:</label>
-      <select class="form-select" id="stateFilter" onchange="filterByState()" style="width: 200px; display: inline-block;">
-        <option value="All">All States</option>
-        <option value="Texas">Texas</option>
-        <option value="California">California</option>
-        <option value="New York">New York</option>
-        <option value="Florida">Florida</option>
-        <option value="Illinois">Illinois</option>
-        <option value="Kansas">Kansas</option>
-      </select>
-    </div>
-    
-    <div class="row">
-      {% for dealer in dealers %}
-      <div class="col-md-6 col-lg-4 mb-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">{{ dealer.full_name }}</h5>
-            <p class="card-text">
-              <strong>Address:</strong> {{ dealer.address }}<br>
-              <strong>City:</strong> {{ dealer.city }}, {{ dealer.state }}<br>
-              <strong>ZIP:</strong> {{ dealer.zip }}
-            </p>
-            <a href="/djangoapp/dealer/{{ dealer.id }}" class="btn btn-primary">View Details</a>
-            <a href="/djangoapp/reviews/dealer/{{ dealer.id }}" class="btn btn-secondary">View Reviews</a>
+    {% if reviews %}
+      <div class="row">
+        {% for review in reviews %}
+        <div class="col-md-6 mb-4">
+          <div class="card">
+            <div class="card-header d-flex justify-content-between">
+              <strong>{{ review.name }}</strong>
+              <span class="sentiment-{{ review.sentiment }}">{{ review.sentiment|title }}</span>
+            </div>
+            <div class="card-body">
+              <p class="card-text">{{ review.review }}</p>
+              {% if review.purchase %}
+              <div class="mt-3">
+                <h6>Purchase Details:</h6>
+                <p><strong>Car:</strong> {{ review.car_year }} {{ review.car_make }} {{ review.car_model }}</p>
+                <p><strong>Purchase Date:</strong> {{ review.purchase_date }}</p>
+              </div>
+              {% endif %}
+            </div>
           </div>
         </div>
+        {% endfor %}
       </div>
-      {% endfor %}
+    {% else %}
+      <div class="alert alert-info" role="alert">
+        <h4 class="alert-heading">No Reviews Found</h4>
+        <p>There are currently no reviews for this dealer.</p>
+      </div>
+    {% endif %}
+    
+    <div class="mt-4">
+      <a href="/djangoapp/dealer/{{ dealer_id }}" class="btn btn-primary">Back to Dealer Details</a>
+      <a href="/djangoapp/get_dealers" class="btn btn-secondary">All Dealers</a>
     </div>
   </div>
 </body>
