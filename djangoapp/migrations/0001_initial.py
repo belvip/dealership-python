@@ -34,9 +34,11 @@ class Migration(migrations.Migration):
                 ('dealer_id', models.IntegerField()),
                 ('name', models.CharField(max_length=100)),
                 ('type', models.CharField(
-                    choices=[('SEDAN', 'Sedan'), ('SUV', 'SUV'),
-                             ('WAGON', 'Wagon'), ('HATCHBACK', 'Hatchback'),
-                             ('COUPE', 'Coupe'), ('CONVERTIBLE', 'Convertible')],
+                    choices=[
+                        ('SEDAN', 'Sedan'), ('SUV', 'SUV'),
+                        ('WAGON', 'Wagon'), ('HATCHBACK', 'Hatchback'),
+                        ('COUPE', 'Coupe'), ('CONVERTIBLE', 'Convertible')
+                    ],
                     max_length=20)),
                 ('year', models.IntegerField(
                     validators=[
