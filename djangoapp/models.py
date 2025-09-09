@@ -1,6 +1,4 @@
-
 from django.db import models
-from django.utils.timezone import now
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 
@@ -24,7 +22,7 @@ class CarModel(models.Model):
         ('COUPE', 'Coupe'),
         ('CONVERTIBLE', 'Convertible'),
     ]
-    
+
     car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)
     dealer_id = models.IntegerField()
     name = models.CharField(max_length=100)
@@ -33,6 +31,6 @@ class CarModel(models.Model):
         validators=[MinValueValidator(2015), MaxValueValidator(2023)]
     )
     color = models.CharField(max_length=50, blank=True)
-    
+
     def __str__(self):
         return f"{self.car_make.name} {self.name}"
