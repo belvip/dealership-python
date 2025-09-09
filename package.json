@@ -8,5 +8,8 @@
     "build": "echo \"Build completed successfully\""
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "jshint": "^2.13.6"
+  }
 }

@@ -116,9 +116,15 @@ def get_dealer_reviews(request, dealer_id):
     if dealer_id:
         endpoint = "/fetchReviews/dealer/" + str(dealer_id)
         reviews = get_request(endpoint)
-        for review_detail in reviews:
-            response = analyze_review_sentiments(review_detail['review'])
-            review_detail['sentiment'] = response['sentiment']
+        if reviews is None:
+            reviews = []
+        else:
+            for review_detail in reviews:
+                response = analyze_review_sentiments(review_detail['review'])
+                if response and 'sentiment' in response:
+                    review_detail['sentiment'] = response['sentiment']
+                else:
+                    review_detail['sentiment'] = 'neutral'
         context = {'reviews': reviews, 'dealer_id': dealer_id}
         return render(request, 'dealer_reviews.html', context)
     else:
@@ -152,8 +158,34 @@ def post_review(request, dealer_id):
         car_year = request.POST.get('car_year', '')
         purchase_date = request.POST.get('purchase_date', '')
         
-        # Add success message
-        messages.success(request, f'Thank you {name}! Your review has been submitted successfully.')
+        # Create review data
+        review_data = {
+            'name': name,
+            'dealership': dealer_id,
+            'review': review_text,
+            'purchase': purchase,
+            'car_make': car_make,
+            'car_model': car_model,
+            'car_year': car_year,
+            'purchase_date': purchase_date
+        }
+        
+        # Submit review to API
+        try:
+            import requests
+            import json
+            from .restapis import backend_url
+            
+            response = requests.post(f'{backend_url}/insert_review', 
+                                   data=json.dumps(review_data),
+                                   headers={'Content-Type': 'application/json'})
+            
+            if response.status_code == 200:
+                messages.success(request, f'Thank you {name}! Your review has been submitted successfully.')
+            else:
+                messages.error(request, 'There was an error submitting your review. Please try again.')
+        except Exception as e:
+            messages.error(request, 'There was an error submitting your review. Please try again.')
         
         context = {'dealer_id': dealer_id}
         return render(request, 'post_review.html', context)

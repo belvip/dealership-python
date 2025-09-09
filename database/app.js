@@ -1,9 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const fs = require('fs');
-const  cors = require('cors')
+const cors = require('cors')
 const app = express()
 const port = 3030;
+
+// Set up EJS template engine
+app.set('view engine', 'ejs');
+app.set('views', './views');
 
 app.use(cors())
 app.use(require('body-parser').urlencoded({ extended: false }));
@@ -34,7 +38,7 @@ app.get('/', async (req, res) => {
 app.get('/fetchReviews', async (req, res) => {
   try {
     const documents = await Reviews.find();
-    res.json(documents);
+    res.render('all_reviews', { reviews: documents });
   } catch (error) {
     res.status(500).json({ error: 'Error fetching documents' });
   }
